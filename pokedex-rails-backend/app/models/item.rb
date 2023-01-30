@@ -12,7 +12,11 @@
 #  pokemon_id :bigint           not null
 #
 class Item < ApplicationRecord
-     validates :name, length: { in: 3..255 }, uniqueness: { message: "'%{value}' is already in use" }
+     validates :name, length: { in: 3..255 }
      validates :price, numericality: { greater_than: 0 }
      validates :happiness, :image_url, presence: true
+
+     belongs_to :pokemon,
+        foreign_key: :pokemon_id,
+        class_name: :Pokemon
 end

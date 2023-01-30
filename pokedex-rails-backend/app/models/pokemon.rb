@@ -50,7 +50,11 @@ class Pokemon < ApplicationRecord
 
   has_many :moves,
     through: :poke_moves,
-    source: :move,
+    source: :move
 
+  has_many :items,
+    foreign_key: :pokemon_id,
+    class_name: :Item,
+    dependent: :destroy
 
 end
